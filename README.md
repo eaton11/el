@@ -65,13 +65,13 @@ el('.myElements').hasClass("someClass", "all")  //=> true or false
 
 ###Remove / Append Elements
 
-#####Remove element(s) fromt the DOM `rm()`
+#####Remove element(s) from the DOM `rm()`
 ```javascript
 el('#myElement').rm()
 ```  
 If you got multiple elements by their class or tag name, they will all be removed with this method.
 
-#####Append another element to this element `appendEl()`
+#####Append another element to this element `appendEl(element)`
 ```javascript
 var myDiv = el("#myDiv");
 var myPar = el("myPar");
@@ -80,12 +80,22 @@ myDiv.appendEl(myPar); // appends the p to the div
 ```  
 If you got multiple elements by their class or tag name, they will all be removed with this method.
 
+#####Append this element to another element `appendTo(element)`
+
+#####remove all children from and element `purge()`
+If you got multiple elements by their class or tag name, they will all become childless.
+
+###Edit Elements
+
+#####Add text to an element `addText(string)`
+
 <br> 
 - - -
 ####Road Map
 - Add ability to create elements
 - Add ability to add, set, read, delete html attributes
 - Add default criteria of `"all"` for the second parameter of `hasClass()`
+- add conflict verification if purging a class or element
 
 <br>  
 <br>  
