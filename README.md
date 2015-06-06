@@ -80,14 +80,16 @@ myDiv.appendEl(myPar); // appends the p to the div
 ```  
 If you got multiple elements by their class or tag name, they will all be removed with this method.
 
-#####Append this element to another element `appendTo(element)`
+#####Append this element to another element `appendTo(element)`  
 
-#####remove all children from and element `purge()`
-If you got multiple elements by their class or tag name, they will all become childless.
+#####Remove all children from and element `purge()`
+If you got multiple elements by their class or tag name, they will all become childless.  
 
-###Edit Elements
+<br>
 
-#####Add text to an element `addText(string)`
+###Edit Elements  
+
+#####Add text to an element `addText(string)`  
 
 <br> 
 - - -
