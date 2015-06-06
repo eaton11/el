@@ -25,13 +25,34 @@ Everything is backwords compatible with old browsers :)
 
 ###Getting Elements
 
-Get an element by it's id, or get mutliple elements by their class or tag name.  
+Get an element by it's id, or get mutliple elements by their class or tag name:   
 - By id: `el('#id_here')` *(with the hash)*
 - By class name: `el('.class_here')`  *(with the dot)*
-- By tag name: `el('tag_name_here')` (e.g. `el('div')`)  
+- By tag name: `el('tag_name_here')` (e.g. `el('div')`)    
 
+You can specify how many elemnts to get when selecting by class or tag:  
+Doing `el('.class_name', 1)` will return the first element with the class name. Same goes for tag anme.
 <br>  
 
+###Creating Elements
+You can create elements by using a plus sign before the element type:  
+`el('+div')` or `el('+h1')`  
+
+You can create multiple elements at once by passing an integer for the second parameter:  
+`el('+div', 3)`  
+
+*advanced example*
+```javascript
+el("+div").append( el("+p",3).text("i'm a p") );
+```
+will produce
+```html
+<div>
+  <p>i'm a p</p>
+  <p>i'm a p</p>
+  <p>i'm a p</p>
+</div>
+```
 ###Working with classes  
 #####Add class `.addClass(string)`
 ```javascript
