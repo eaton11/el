@@ -1,5 +1,5 @@
 /*!
-	<el> by sam eaton
+	<el> by samr_eaton
 */
 var el = function(_string){
 	function getElement(_string){
