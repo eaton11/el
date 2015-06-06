@@ -9,7 +9,7 @@
 
 
 # el
-A lighter substitute for jQuery DOM manipulation
+A lighter substitute for jQuery DOM manipulation  
 [![GitHub version](https://badge.fury.io/gh/eaton11%2Fel.svg)](http://badge.fury.io/gh/eaton11%2Fel) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 
