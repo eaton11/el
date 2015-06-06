@@ -1,5 +1,5 @@
 /*!
-	<el> by samr_eaton
+	<el> by samueleaton
 */
 var el = function(_string, _num){
 	if(typeof _num === "undefined") _num = null;
