@@ -18,9 +18,6 @@ A lighter substitute for jQuery DOM manipulation
 It's a way to get up in the DOM's personal space, work with id's, classes, remove/append elements, etc. 
 Everything is backwords compatible with old browsers :)
 
-####Examples?####
-
-Comin' right up!  
 <br> 
 <br>
 
