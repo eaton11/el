@@ -36,7 +36,6 @@ var el = function(_string, _num){
 	}
 	function addMethods(_obj){
 
-
 		// ==== adds methods to multi element arr ====
 		if(_obj.arr === true){
 
@@ -51,7 +50,8 @@ var el = function(_string, _num){
 				return _obj;
 			});
 
-			_obj.addClass = function(_class){
+			_obj.addClass = function(_class){ 
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){
 						if(!_item.el) _item = addMethods(_item);
@@ -62,16 +62,18 @@ var el = function(_string, _num){
 			}
 
 			_obj.rmClass = function(_class){
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){	
 						if(!_item.el) _item = addMethods(_item);
-						_item.addClass(_class);
+						_item.rmClass(_class);
 					}
 				})
 				return _obj;
 			}
 
 			_obj.hasClass = function(_class, _which){
+				if(this.empty === true) return this;
 				if(_which === "all" || typeof _which === "undefined"){
 					_obj.each(function(_item){
 						if(typeof _item !== "undefined"){	
@@ -97,6 +99,7 @@ var el = function(_string, _num){
 			}
 
 			_obj.rm = function(_class){
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){
 						if(!_item.el) _item = addMethods(_item);
@@ -107,6 +110,7 @@ var el = function(_string, _num){
 			}
 
 			_obj.append = function(_el){
+				if(this.empty === true) return this;
 				// if incoming is array, convert to fragment
 				if(_el.arr){
 					var fragment = document.createDocumentFragment();
@@ -129,7 +133,7 @@ var el = function(_string, _num){
 
 
 			_obj.appendTo = function(_el){
-
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){
 						if(!_item.el) _item = addMethods(_item);
@@ -140,6 +144,7 @@ var el = function(_string, _num){
 			}
 
 			_obj.text = function(_string){
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){
 						if(!_item.el) _item = addMethods(_item);
@@ -150,6 +155,7 @@ var el = function(_string, _num){
 			}
 
 			_obj.purge = function(){
+				if(this.empty === true) return this;
 				_obj.each(function(_item){
 					if(typeof _item !== "undefined"){
 						if(!_item.el) _item = addMethods(_item);
@@ -167,6 +173,7 @@ var el = function(_string, _num){
 		// ==== adds methods to single element ====
 
 		_obj.addClass = function(_str){
+			if(this.empty === true) return this;
 			if(this.className.indexOf(_str) === -1){
 				if(this.className.length > 0){
 					this.className = this.className + " " + _str;
@@ -179,6 +186,7 @@ var el = function(_string, _num){
 		};
 
 		_obj.rmClass = function(_str){
+			if(this.empty === true) return this;
 			if(this.className.indexOf(_str) !== -1){
 				if(this.className.indexOf(" ") === -1){
 					this.className = "";
@@ -201,6 +209,7 @@ var el = function(_string, _num){
 		};
 
 		_obj.hasClass = function(_str){
+			if(this.empty === true) return this;
 			var classes = this.className.split(" ");
 			for(var i = 0; i < classes.length; i++) {
 				if(classes[i] === _str) {
@@ -211,6 +220,7 @@ var el = function(_string, _num){
 		};
 
 		_obj.rm = function(){
+			if(this.empty === true) return this;
 			var self = this;
 			if(self.parentNode) 
 				self.parentNode.removeChild(self);
@@ -218,6 +228,7 @@ var el = function(_string, _num){
 		};
 
 		_obj.append = function(_el){
+			if(this.empty === true) return this;
 			if(_el.arr){
 				var fragment = document.createDocumentFragment();
 				_el.each(function(single){
@@ -231,9 +242,8 @@ var el = function(_string, _num){
 		};
 
 		_obj.appendTo = function(_el){
+			if(this.empty === true) return this;
 			var self = this;
-			// _el.appendChild(self);
-			// console.log(_el);
 			if(_el.arr){
 				_el.each(function(eachEl){
 					eachEl.appendChild(self.cloneNode(true));
@@ -245,12 +255,14 @@ var el = function(_string, _num){
 		};
 
 		_obj.text = function(_string){
+			if(this.empty === true) return this;
 			if(typeof _string === "string")
 				this.appendChild(document.createTextNode(_string));
 			return this;
 		};
 
 		_obj.purge = function(){
+			if(this.empty === true) return this;
 			var self = this;
 			while (self.firstChild)
 			  self.removeChild(self.firstChild);
@@ -258,10 +270,9 @@ var el = function(_string, _num){
 		}
 		
 
-
 		return _obj;
 	}
 	var newObject = getElement(_string, _num);
-	newObject = addMethods(newObject);
+	(newObject !== null) ? newObject = addMethods(newObject) : console.log("%c<el>","font-family:Georgia, serif;font-size:1.4em;color:rgb(77,148,144);",":  \""+_string+"\" not found");
 	return newObject;
 }
