@@ -50,10 +50,10 @@ For single elements, pass just one parameter (the class name). Returns `bool`
 ```javascript
 el('#myElement').hasClass("someClass")  //=> true or false
 ```  
-For an array of elements, pass 2 parameters (the class name and criteria). 
-**Criteria** 
-- `"all"` - returns true if *ALL* elements in the array have the class, otherwise it returns false
-- `"any"` - returns true if *ANY* elements in the array have the class, otherwise it returns false
+For an array of elements, pass 2 parameters (the class name and criteria).   
+**Criteria:**
+- `"all"` - returns true if *ALL* elements in the array have the class, otherwise it returns false  
+- `"any"` - returns true if *ANY* elements in the array have the class, otherwise it returns false  
 ```javascript
 el('.myElements').hasClass("someClass", "all")  //=> true or false
 ``` 
