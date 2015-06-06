@@ -11,7 +11,7 @@
 # el
 A lighter substitute for jQuery DOM manipulation
 
-<br>
+
 
 ####What the el is el?####
 
@@ -32,6 +32,7 @@ Get an element by it's id, or get mutliple elements by their class or tag name:
 
 You can specify how many elemnts to get when selecting by class or tag:  
 Doing `el('.class_name', 1)` will return the first element with the class name. Same goes for tag anme.
+
 <br>  
 
 ###Creating Elements
@@ -53,6 +54,7 @@ will produce
   <p>i'm a p</p>
 </div>
 ```
+<br>
 ###Working with classes  
 #####Add class `.addClass(string)`
 ```javascript
@@ -73,7 +75,7 @@ el('#myElement').hasClass("someClass")  //=> true or false
 ```  
 For an array of elements, pass 2 parameters (the class name and criteria).   
 **Criteria:**
-- `"all"` - returns true if *ALL* elements in the array have the class, otherwise it returns false  
+- `"all"`(default) - returns true if *ALL* elements in the array have the class, otherwise it returns false  
 - `"any"` - returns true if *ANY* elements in the array have the class, otherwise it returns false  
 ```javascript
 el('.myElements').hasClass("someClass", "all")  //=> true or false
@@ -89,33 +91,83 @@ el('#myElement').rm()
 ```  
 If you got multiple elements by their class or tag name, they will all be removed with this method.
 
-#####Append another element to this element `appendEl(element)`
+#####Append another element to this element `append(element)`
 ```javascript
 var myDiv = el("#myDiv");
 var myPar = el("myPar");
 
-myDiv.appendEl(myPar); // appends the p to the div
+myDiv.append(myPar); // appends the p to the div
 ```  
-If you got multiple elements by their class or tag name, they will all be removed with this method.
 
 #####Append this element to another element `appendTo(element)`  
 
-#####Remove all children from and element `purge()`
-If you got multiple elements by their class or tag name, they will all become childless.  
+**Appending multiple and/or appending to multiple elements**  
+When you append multiple elements, they will be cloned for you.
+```html
+<div class="superdiv"></div>
+<div class="superdiv"></div>
+```
+```javascript
+var superdiv = el(".superdiv");
+var elegantParagraphs = el("+p",3).text("I'm fancy");
 
+superdiv.append(elegantParagraphs);
+```
+*results in...*
+```html
+<div class="superdiv">
+  <p>I'm fancy</p>
+  <p>I'm fancy</p>
+  <p>I'm fancy</p>
+</div>
+<div class="superdiv">
+  <p>I'm fancy</p>
+  <p>I'm fancy</p>
+  <p>I'm fancy</p>
+</div>
+```   
+
+
+#####Remove all children from element(s) `purge()`
+```html
+<!--html-->
+<h1 class="coolGuy">
+  <span>I'm gonna die</span>
+</h1>
+<div class="coolGuy">
+  <p></p>
+  <p class="coolGuy">
+    <span>I'm so dead</span>
+  </p>
+</div>
+```
+```javascript
+//javascript
+el(".coolGuy").purge().text("Hello, Joe.");
+```
+*Results in...*
+```html
+<!--html-->
+<h1 class="coolGuy">
+  Hello, Joe.
+</h1>
+<div class="coolGuy">
+  Hello, Joe.
+</div>
+```
 <br>
 
 ###Edit Elements  
 
-#####Add text to an element `addText(string)`  
+#####Add text to an element `text(string)`  
 
 <br> 
 - - -
 ####Road Map
-- Add ability to create elements
-- Add ability to add, set, read, delete html attributes
-- Add default criteria of `"all"` for the second parameter of `hasClass()`
-- add conflict verification if purging a class or element
+- ~~Add ability to create elements~~ *added!*
+- Add ability to add, set, read, delete html attributes *maybe*
+- ~~Add default criteria of `"all"` for the second parameter of `hasClass()`~~ *added!*
+- ~~fix purging error if purging children and parent~~ *added!*
 
 <br>  
 <br>  
