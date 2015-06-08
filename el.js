@@ -1,16 +1,20 @@
 /*!
 	<el> by samueleaton
 */
-var el = function(_string, _num){
+var el = function(_string, _num){	
+
 	if(typeof _num === "undefined") _num = null;
 	function getElement(_string, _num){
+		var elements = [];
 		var firstChar = _string.charAt(0);
 		switch (firstChar){
-			case "#":
+
+			case "#": 
 				return document.getElementById(_string.slice(1));
+
+
 			case "+":
 				if(_num && typeof _num === "number"){ // multi
-					var elements = [];
 					elements.arr = true;
 					for(var i = 0, ii = _num; i < ii; i++){
 						elements.push(document.createElement(_string.slice(1)));
@@ -18,22 +22,28 @@ var el = function(_string, _num){
 					return elements;
 				}
 				return document.createElement(_string.slice(1)); // single
+
+
 			case ".":
-				var elements = document.getElementsByClassName(_string.slice(1));
-				elements.arr = true;
-				if(_num && typeof _num === "number"){ 
-					return elements.slice(0,_num); 
-				}
-				return elements;
+				elements = document.getElementsByClassName(_string.slice(1));
+				break;
+
+
 			default:
 				var elements = document.getElementsByTagName(_string);
-				elements.arr = true;
-				if(_num && typeof _num === "number"){ 
-					return elements.slice(0,_num); 
-				}
-				return elements;
+				break;
+
 		}
+
+		// runs for case "." or default
+		elements = Array.prototype.slice.call(elements);
+		if(_num && typeof _num === "number") 
+			elements = elements.slice(0,_num);
+		elements.arr = true;
+		return elements;
+
 	}
+
 	function addMethods(_obj){
 
 		// ==== adds methods to multi element arr ====
