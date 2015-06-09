@@ -23,6 +23,39 @@ var el = function(_string, _num){
 				}
 				return document.createElement(_string.slice(1)); // single
 
+			case "[":
+				if( _string.charAt(_string.length-1) === "]" ){
+					var newString = _string.slice(1,_string.length-1);
+					var equalSignIndex = newString.indexOf('=');
+					var key;
+					var value;
+
+					if(equalSignIndex !== 0 && equalSignIndex !== newString.length-1){
+						if(equalSignIndex === -1){
+							key = newString;
+							value = null
+						} else {
+							key = newString.split("=")[0];
+							value = newString.toString().split("=")[1];
+						}
+						elements = document.getElementsByTagName("*");
+						var matchingElements = [];
+						for (var i = 0, n = elements.length; i < n; i++)
+					  {
+					    if (elements[i].getAttribute(key) !== null)
+					    {
+					      if(value === null){
+					      	matchingElements.push(elements[i]);
+					      }
+					      else if(elements[i].getAttribute(key) === value) {
+					      	matchingElements.push(elements[i]);
+					      }
+					    }
+					  }
+					  elements = matchingElements;
+					}
+				}
+				break;
 
 			case ".":
 				elements = document.getElementsByClassName(_string.slice(1));
@@ -35,7 +68,7 @@ var el = function(_string, _num){
 
 		}
 
-		// runs for case "." or default
+		// runs for case "[]", ".", or default
 		elements = Array.prototype.slice.call(elements);
 		if(_num && typeof _num === "number") 
 			elements = elements.slice(0,_num);
