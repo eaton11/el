@@ -165,7 +165,6 @@ el(".coolGuy").purge().text("Hello, Joe.");
 - - -
 ####Road Map
 - ~~Add ability to create elements~~ *added!*
-- Add ability to add, set, read, delete html attributes *maybe*
 - ~~Add default criteria of `"all"` for the second parameter of `hasClass()`~~ *added!*
 - ~~fix purging error if purging children and parent~~ *added!*
 
