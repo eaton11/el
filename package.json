@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "A lighter substitute for jQuery DOM manipulation",
   "main": "el.js",
-  "dependencies": {
-    "gulp": "^3.8.11",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
-  },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-include": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "gulp-wrap": "^0.11.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
