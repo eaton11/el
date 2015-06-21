@@ -9,7 +9,7 @@
 
 
 # el
-Light and powerful DOM manipulation
+Light and powerful DOM manipulation  
 [![GitHub version](https://badge.fury.io/gh/samueleaton%2Fel.svg)](http://badge.fury.io/gh/samueleaton%2Fel) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 
