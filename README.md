@@ -201,7 +201,6 @@ To build only one of the libraries using gulp, run `gulp globalScope` or `gulp l
 - Add ability to add, set, read, delete html style attributes
 - Pass an HTMLElement to `el()` or `el.elify()` and it will receive all of the &lt;el&gt; methods
 
-
 <br>  
 <br>  
 <p align="center">
