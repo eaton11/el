@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A lighter substitute for jQuery DOM manipulation",
   "main": "el.js",
+  "repository":"https://github.com/samueleaton/el.git",
   "devDependencies": {
     "gulp": "*",
     "gulp-concat": "*",

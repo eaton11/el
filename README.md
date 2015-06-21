@@ -1,7 +1,7 @@
 <br>  
 <br>  
 <p align="center">
-<img src="logo.png"> 	
+<img src="logo.png">  
 </p>
 <br>  
 <br>  
@@ -9,7 +9,7 @@
 
 
 # el
-A lighter substitute for jQuery DOM manipulation  
+Light and powerful DOM manipulation
 [![GitHub version](https://badge.fury.io/gh/samueleaton%2Fel.svg)](http://badge.fury.io/gh/samueleaton%2Fel) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 
@@ -165,14 +165,13 @@ el(".coolGuy").purge().text("Hello, Joe.");
 - - -
 ####Road Map
 - ~~Add ability to create elements~~ *added!*
-- Add ability to add, set, read, delete html attributes *maybe*
 - ~~Add default criteria of `"all"` for the second parameter of `hasClass()`~~ *added!*
 - ~~fix purging error if purging children and parent~~ *added!*
 
 <br>  
 <br>  
 <p align="center">
-<img src="closing_tag.png"> 	
+<img src="closing_tag.png">   
 </p>
 <br>  
 <br>
