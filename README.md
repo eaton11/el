@@ -1,7 +1,7 @@
 <br>  
 <br>  
 <p align="center">
-<img src="logo.png"> 	
+<img src="logo.png">  
 </p>
 <br>  
 <br>  
@@ -9,11 +9,11 @@
 
 
 # el
-A lighter substitute for jQuery DOM manipulation  
+Light and powerful DOM manipulation  
 [![GitHub version](https://badge.fury.io/gh/samueleaton%2Fel.svg)](http://badge.fury.io/gh/samueleaton%2Fel) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 
-####What the el is el?####
+####What the el is el?
 
 It's a way to get up in the DOM's personal space, work with id's, classes, remove/append elements, etc. 
 Everything is backwords compatible with old browsers :)
@@ -26,18 +26,23 @@ Everything is backwords compatible with old browsers :)
 ###Getting Elements
 
 Get an element by it's id, or get mutliple elements by their class or tag name:   
-- By id: `el('#id_here')` *(with the hash)*
-- By class name: `el('.class_here')`  *(with the dot)*
+- By id: `el('#id_here')`
+- By class name: `el('.class_here')`
 - By tag name: `el('tag_name_here')` (e.g. `el('div')`)    
 
+The alternate long hand way is as follows:
+- By id: `el.getById('id_here')`
+- By class name: `el.getByClassName('class_here')`
+- By tag name: `el.getByTagName('tag_name_here')` 
+
 You can specify how many elemnts to get when selecting by class or tag:  
-Doing `el('.class_name', 1)` will return the first element with the class name. Same goes for tag anme.
+Doing `el('.class_name', 1)` will return an array containing the first element with that class name. Same goes for tag name.
 
 <br>  
 
 ###Creating Elements
-You can create elements by using a plus sign before the element type:  
-`el('+div')` or `el('+h1')`  
+You can create elements by using a plus sign before the element type or just using the create method:  
+`el('+div')` or `el.create('h1')`  
 
 You can create multiple elements at once by passing an integer for the second parameter:  
 `el('+div', 3)`  
@@ -157,21 +162,49 @@ el(".coolGuy").purge().text("Hello, Joe.");
 ```
 <br>
 
+####NOTE About Appending
+With `append` or `appendTo`, the element(s) that is/are beeing appended inside of another will be de-referenced. For example:  
+```html
+<div> </div>
+<div> </div>
+<div> </div>
+```
+```javascript
+var divs = el("div");
+var pars = el("+p",2).appendTo( divs );
+divs.addClass("coolDivs"); // works fine
+pars.addClass("coolParagraphs"); // does nothing!
+```  
+You need to re-select the paragraphs to continue to modify them.
+
+**Another thing**  
+Whenever an element is cloned (like in the example right above with the paragraphs) it loses its event listeners. That is a native issue with javascript, not &lt;el&gt;
+
+
 ###Edit Elements  
 
 #####Add text to an element `text(string)`  
 
 <br> 
+
+###Library Scope  
+If you look in the `lib` directory you will see a `global` and `local` directory. The difference is that the `global` library the `el` object to the window (allowing you to use it anywhere in the client) and `local` library just instantiates `el` using the `var` keyword, meaning it has a local scope to wherever it is instantiated (which is good for using the el library as a local dependency for a library)  
+
+If you make any changes to the files in the `src` folder and then run the default `gulp` command from the terminal, both the global and local libraries will be built.  
+
+To build only one of the libraries using gulp, run `gulp globalScope` or `gulp localScope`.
+
 - - -
 ####Road Map
-- ~~Add ability to create elements~~ *added!*
-- ~~Add default criteria of `"all"` for the second parameter of `hasClass()`~~ *added!*
-- ~~fix purging error if purging children and parent~~ *added!*
+
+- Add ability to add, set, read, delete any html attributes
+- Add ability to add, set, read, delete html style attributes
+- Pass an HTMLElement to `el()` or `el.elify()` and it will receive all of the &lt;el&gt; methods
 
 <br>  
 <br>  
 <p align="center">
-<img src="closing_tag.png"> 	
+<img src="closing_tag.png">   
 </p>
 <br>  
 <br>
