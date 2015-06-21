@@ -1,7 +1,7 @@
 /*
 INIT
 */
-window.el = function(_string, _num){
+#SCOPE#el = function(_string, _num){
 	var self = (this === window)? window.el : this;
 	function getElement(_string){
 		var elements = [];

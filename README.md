@@ -13,7 +13,7 @@ Light and powerful DOM manipulation
 [![GitHub version](https://badge.fury.io/gh/samueleaton%2Fel.svg)](http://badge.fury.io/gh/samueleaton%2Fel) <img src="https://img.shields.io/badge/license-MIT-blue.svg">
 
 
-####What the el is el?####
+####What the el is el?
 
 It's a way to get up in the DOM's personal space, work with id's, classes, remove/append elements, etc. 
 Everything is backwords compatible with old browsers :)
@@ -186,6 +186,14 @@ Whenever an element is cloned (like in the example right above with the paragrap
 #####Add text to an element `text(string)`  
 
 <br> 
+
+###Library Scope  
+If you look in the `lib` directory you will see a `global` and `local` directory. The difference is that the `global` library the `el` object to the window (allowing you to use it anywhere in the client) and `local` library just instantiates `el` using the `var` keyword, meaning it has a local scope to wherever it is instantiated (which is good for using the el library as a local dependency for a library)  
+
+If you make any changes to the files in the `src` folder and then run the default `gulp` command from the terminal, both the global and local libraries will be built.  
+
+To build only one of the libraries using gulp, run `gulp globalScope` or `gulp localScope`.
+
 - - -
 ####Road Map
 
