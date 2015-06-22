@@ -180,11 +180,27 @@ el.elify = function(_obj){
 			  self.removeChild(self.firstChild);
 			return self;
 		};
-		_ELEMENT.text = function(_string){
-			if(typeof _string === "string")
-				this.appendChild(document.createTextNode(_string));
-			return this;
-		};
+
+		if(_ELEMENT.nodeName === "BODY"){
+			Object.defineProperty(_ELEMENT, "text", {
+					configurable: true, 
+					enumerable: true, 
+					writable: true, 
+					value: function(_string){
+						if(typeof _string === "string")
+							_ELEMENT.appendChild(document.createTextNode(_string));
+						return _ELEMENT;
+					}
+				}
+			);
+		} else {
+			_ELEMENT.text = function(_string){
+				if(typeof _string === "string")
+					this.appendChild(document.createTextNode(_string));
+				return this;
+			};
+		}
+			
 
 
 		return _ELEMENT;
