@@ -188,6 +188,7 @@ Whenever an element is cloned (like in the example right above with the paragrap
 <br> 
 
 ###Library Scope  
+*The Local scope is still buggy, use the global scope*  
 If you look in the `lib` directory you will see a `global` and `local` directory. The difference is that the `global` library the `el` object to the window (allowing you to use it anywhere in the client) and `local` library just instantiates `el` using the `var` keyword, meaning it has a local scope to wherever it is instantiated (which is good for using the el library as a local dependency for a library)  
 
 If you make any changes to the files in the `src` folder and then run the default `gulp` command from the terminal, both the global and local libraries will be built.  
