@@ -11,6 +11,18 @@ INIT
 				return self.getById(_string.slice(1));
 
 			case "+":
+				if(_string.slice(1).match(/#/)){ 
+					var elmArr = _string.slice(1).split("#");
+					var node = self.create(elmArr[0],_num);
+					if(el.isElementArray(node)){
+						node.each(function(elm){
+							elm.setAttribute("id", elmArr[1]);
+						})
+					} else {
+						node.setAttribute("id",elmArr[1])
+					}
+					return node;
+				}
 				return self.create(_string.slice(1),_num); // single
 
 			case ".":

@@ -181,7 +181,7 @@ el.elify = function(_obj){
 			return self;
 		};
 
-		if(_ELEMENT.nodeName === "BODY"){
+		if(_ELEMENT.nodeName === "BODY" || _ELEMENT.nodeName === "OPTION"){
 			Object.defineProperty(_ELEMENT, "text", {
 					configurable: true, 
 					enumerable: true, 
