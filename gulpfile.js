@@ -21,15 +21,18 @@ function compileJs(_scope){
 		.pipe(concat("el.js"))
 		.pipe(wrap( (_scope === "local")?localFill:globalFill ))
 		.pipe(include())
-		.pipe(gulp.dest("lib/"+_scope+"/"));
+		.pipe(gulp.dest("lib/"));
+		// .pipe(gulp.dest("lib/"+_scope+"/")); //would make global directory
 }
 
 function uglifyJs(_scope){
-	return gulp.src("lib/"+_scope+"/el.js")
+	// return gulp.src("lib/"+_scope+"/el.js")
+	return gulp.src("lib/el.js")
 		.pipe(plumber())
 		.pipe(uglify({preserveComments:"some"}))
 		.pipe(rename("el.min.js"))
-		.pipe(gulp.dest("lib/"+_scope+"/"));
+		// .pipe(gulp.dest("lib/"+_scope+"/"));
+		.pipe(gulp.dest("lib/"));
 }
 
 gulp.task("compile-js-global", function(){
@@ -50,6 +53,7 @@ gulp.task("watch", function(){
 	gulp.watch(["src/*.js", "!src/classListPolyFill.js"], ["uglify-js-global","uglify-js-local"])
 })
 
-gulp.task("default", ["globalScope", "localScope", "watch"]);
+gulp.task("default", ["globalScope", "watch"]);
+// gulp.task("default", ["globalScope", "localScope", "watch"]);
 gulp.task("globalScope", ["uglify-js-global"]);
 gulp.task("localScope", ["uglify-js-local"]);
