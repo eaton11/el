@@ -16,7 +16,7 @@ Light and powerful DOM manipulation
 ####What the el is el?
 
 It's a way to get up in the DOM's personal space, work with id's, classes, remove/append elements, etc. 
-Everything is backwords compatible with old browsers :)
+The "legacy" library is backwards compatible with old browsers.
 
 <br> 
 <br>
@@ -30,11 +30,6 @@ Get an element by it's id, or get mutliple elements by their class or tag name:
 - By class name: `el('.class_here')`
 - By tag name: `el('tag_name_here')` (e.g. `el('div')`)    
 
-The alternate long hand way is as follows:
-- By id: `el.getById('id_here')`
-- By class name: `el.getByClassName('class_here')`
-- By tag name: `el.getByTagName('tag_name_here')` 
-
 You can specify how many elemnts to get when selecting by class or tag:  
 Doing `el('.class_name', 1)` will return an array containing the first element with that class name. Same goes for tag name.
 
@@ -46,6 +41,9 @@ You can create elements by using a plus sign before the element type or just usi
 
 You can create multiple elements at once by passing an integer for the second parameter:  
 `el('+div', 3)`  
+
+You can create an element and define an id at the same time:  
+`el('+div#superDiv')`  
 
 *advanced example*
 ```javascript
@@ -187,20 +185,9 @@ Whenever an element is cloned (like in the example right above with the paragrap
 
 <br> 
 
-###Library Scope  
-*The Local scope is still buggy, use the global scope*  
-If you look in the `lib` directory you will see a `global` and `local` directory. The difference is that the `global` library the `el` object to the window (allowing you to use it anywhere in the client) and `local` library just instantiates `el` using the `var` keyword, meaning it has a local scope to wherever it is instantiated (which is good for using the el library as a local dependency for a library)  
-
-If you make any changes to the files in the `src` folder and then run the default `gulp` command from the terminal, both the global and local libraries will be built.  
-
-To build only one of the libraries using gulp, run `gulp globalScope` or `gulp localScope`.
-
 - - -
 ####Road Map
-
-- Add ability to add, set, read, delete any html attributes
 - Add ability to add, set, read, delete html style attributes
-- Pass an HTMLElement to `el()` or `el.elify()` and it will receive all of the &lt;el&gt; methods
 
 <br>  
 <br>  
