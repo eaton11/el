@@ -200,7 +200,12 @@ el.elify = function(_obj){
 				return this;
 			};
 		}
-			
+
+		_ELEMENT.attr = function(_string, _value){
+			if(typeof _string === "string")
+				this.setAttribute( _string, (_value!==undefined)?_value:"" );
+			return this;
+		}
 
 
 		return _ELEMENT;
@@ -324,6 +329,15 @@ el.elify = function(_obj){
 			if(typeof _item !== "undefined"){
 				if(!_item.el) _item = addMethods(_item);
 				_item.text(_string);
+			}
+		})
+		return _obj;
+	}
+	_obj.attr = function(_string, _value){
+		_obj.each(function(_item){
+			if(typeof _item !== "undefined"){
+				if(!_item.el) _item = addMethods(_item);
+				_item.attr(_string, _value);
 			}
 		})
 		return _obj;
