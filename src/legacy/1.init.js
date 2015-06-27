@@ -1,10 +1,9 @@
 /*
 INIT
 */
-#SCOPE#el = function(_string, _num){
+el = function(_string, _num){
 	var self = (this === window)? window.el : this;
 	function getElement(_string){
-		var elements = [];
 		var firstChar = _string.charAt(0);
 		switch (firstChar){
 			case "#": 
@@ -33,9 +32,14 @@ INIT
 		}
 	}
 
-	if(typeof _string === "string")
+	if(typeof _string === "string"){
 		return getElement(_string);
-	else if( el.isElement(_string) )
+	}
+	else if( el.isElement(_string) ){
 		return el.elify(_string);
+	}
+	else if(el.isCollection(_string) || el.isNodeList(_string)) {
+		return el.elify(_string)
+	}
 
 }

@@ -7,53 +7,50 @@ var plumber = require("gulp-plumber");
 var include = require("gulp-include");
 var replace = require("gulp-replace");
 
-function compileJs(_scope){
+function compileJs(_version){
 	var bySamEaton = '/*!\n<el> by samueleaton\n*/';
-	var includePolyfill = "\n//= include addEventListenerPolyFill.js\n";
-	var globalFill = '\n(function(){\n\n<%= contents %>\n})();';
-			globalFill = bySamEaton+globalFill+includePolyfill;
-	var localFill = '\n<%= contents %>\n';
-			localFill = bySamEaton+localFill+includePolyfill;
+	var addEventListenerPolyFill = "\n//= include addEventListenerPolyFill.js\n";
+	var libFill = '\n(function(){\n\n<%= contents %>\n})();';
+	var modernFill = bySamEaton+libFill;
+	var legacyFill = bySamEaton+libFill+addEventListenerPolyFill;
 
-	return gulp.src(["src/*.*.js"])
+	return gulp.src(["src/"+_version+"/*.*.js"])
 		.pipe(plumber())
-		.pipe(replace("#SCOPE#", ((_scope === "local")?"var ":"window.")))
 		.pipe(concat("el.js"))
-		.pipe(wrap( (_scope === "local")?localFill:globalFill ))
+		.pipe(wrap( (_version === "legacy") ? legacyFill : modernFill ))
 		.pipe(include())
-		.pipe(gulp.dest("lib/"));
-		// .pipe(gulp.dest("lib/"+_scope+"/")); //would make global directory
+		.pipe(gulp.dest("lib/"+_version+"/"));
+		// .pipe(gulp.dest("lib/"+_version+"/")); //would make global directory
 }
 
-function uglifyJs(_scope){
-	// return gulp.src("lib/"+_scope+"/el.js")
-	return gulp.src("lib/el.js")
+function uglifyJs(_version){
+	// return gulp.src("lib/"+_version+"/el.js")
+	return gulp.src("lib/"+_version+"/el.js")
 		.pipe(plumber())
 		.pipe(uglify({preserveComments:"some"}))
 		.pipe(rename("el.min.js"))
-		// .pipe(gulp.dest("lib/"+_scope+"/"));
-		.pipe(gulp.dest("lib/"));
+		// .pipe(gulp.dest("lib/"+_version+"/"));
+		.pipe(gulp.dest("lib/"+_version+"/"));
 }
 
-gulp.task("compile-js-global", function(){
-	return compileJs("global");
+gulp.task("compile-js-modern", function(){
+	return compileJs("modern");
 });
-gulp.task("uglify-js-global", ["compile-js-global"], function(){
-	return uglifyJs("global");
+gulp.task("uglify-js-modern", ["compile-js-modern"], function(){
+	return uglifyJs("modern");
 });
 
-gulp.task("compile-js-local", function(){
-	return compileJs("local");
+gulp.task("compile-js-legacy", function(){
+	return compileJs("legacy");
 });
-gulp.task("uglify-js-local", ["compile-js-local"], function(){
-	return uglifyJs("local");
+gulp.task("uglify-js-legacy", ["compile-js-legacy"], function(){
+	return uglifyJs("legacy");
 });
 
 gulp.task("watch", function(){
-	gulp.watch(["src/*.js", "!src/classListPolyFill.js"], ["uglify-js-global","uglify-js-local"])
+	gulp.watch(["src/**", "!src/legacy/classListPolyFill.js"], ["uglify-js-modern","uglify-js-legacy"])
 })
 
-gulp.task("default", ["globalScope", "watch"]);
-// gulp.task("default", ["globalScope", "localScope", "watch"]);
-gulp.task("globalScope", ["uglify-js-global"]);
-gulp.task("localScope", ["uglify-js-local"]);
+gulp.task("default", ["modern", "legacy", "watch"]);
+gulp.task("modern", ["uglify-js-modern"]);
+gulp.task("legacy", ["uglify-js-legacy"]);
