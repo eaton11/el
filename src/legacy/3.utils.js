@@ -1,12 +1,6 @@
 /*
 UTILS
 */
-el.each = function(_callback){
-	for(var t=this,e=0,n=t.length;n>e;e++) {
-		_callback(t[e],e,t);
-	}
-};
-
 el.isArray = function(_obj){
 	if(Array.isArray(_obj) || _obj instanceof Array) return true;
 	return false;

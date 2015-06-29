@@ -38,7 +38,7 @@ el = function(_string, _num){
 	else if( el.isElement(_string) ){
 		return el.elify(_string);
 	}
-	else if(el.isCollection(_string) || el.isNodeList(_string)) {
+	else if(el.isCollection(_string) || el.isNodeList(_string) || el.isElementArray(_string)) {
 		return el.elify(_string)
 	}
 

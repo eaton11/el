@@ -13,7 +13,25 @@ el.create = function(_string, _num){
 }
 
 el.getById = function(_string){
-	return el.elify(document.getElementById(_string));
+	if(this===window.el){
+		return el.elify(document.getElementById(_string));
+	} else if(el.isElement(this)){
+		if(document.contains(this)) return el.elify(document.getElementById(_string));
+		
+		else { // element is in memory, NOT in the DOM
+			var self = this;
+			var found = false;
+			var elm = null;
+			self.el("*").each(function(element){
+				if(element.getAttribute("id")===_string) {
+					found = true;
+					elm = element;
+					return 0;
+				}
+			});
+			return elm;
+		}
+	}
 }
 
 el.getByClassName = function(_string, _num){
@@ -29,11 +47,6 @@ el.getByTagName = function(_string, _num){
 	elements = Array.prototype.slice.call(elements);
 	return el.elify(elements);
 }
-
-
-// el.getByAttribute = function(_key, _value){
-// 	var self = (this === window) ? document : this;
-// }
 
 el.on = function(_evt, _handler){
 	var self = (el.isElement(this)||el.isElementArray(this)) ? this : window;
@@ -56,7 +69,6 @@ el.join = function(_arr){
 	}
 	return el.elify(tempArray);
 }
-
 
 el.elify = function(_obj){
 	function addMethods(_ELEMENT){
@@ -162,7 +174,14 @@ el.elify = function(_obj){
 
 	//COLLECTION OR ARRAY
 	if(el.isCollection(_obj) || el.isNodeList(_obj)) _obj = Array.prototype.slice.call(_obj);
-	_obj.each = el.each;
+
+	_obj.each = function(_callback){
+		for(var t=this,e=0,n=t.length;n>e;e++) {
+			if(_callback(t[e],e,t) === 0) return (this===window.el) ? undefined : this;
+		}
+		return (this===window.el) ? undefined : this;
+	};
+
 	_obj.each(function(elm){ 
 		addMethods(elm);
 	});
