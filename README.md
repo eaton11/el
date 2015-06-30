@@ -187,7 +187,8 @@ Whenever an element is cloned (like in the example right above with the paragrap
 
 - - -
 ####Road Map
-- Add ability to add, set, read, delete html style attributes
+- Update the `attr` method to read an attribute or completely remove it.
+- Add a `prepend` and `prependTo` methods to insert element as first child
 
 <br>  
 <br>  
