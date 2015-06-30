@@ -86,7 +86,7 @@ el('.myElements').hasClass("someClass", "all")  //=> true or false
 
 <br>
 
-###Remove / Append Elements
+###Get / Set Attributes
 
 #####Read Attribute
 *soon*
