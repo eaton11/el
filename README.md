@@ -37,7 +37,7 @@ Doing `el('.class_name', 1)` will return an array containing the first element w
 
 ###Creating Elements
 You can create elements by using a plus sign before the element type or just using the create method:  
-`el('+div')` or `el.create('h1')`  
+`el('+div')` 
 
 You can create multiple elements at once by passing an integer for the second parameter:  
 `el('+div', 3)`  
@@ -83,6 +83,15 @@ For an array of elements, pass 2 parameters (the class name and criteria).
 ```javascript
 el('.myElements').hasClass("someClass", "all")  //=> true or false
 ``` 
+
+<br>
+
+###Remove / Append Elements
+
+#####Read Attribute
+*soon*
+
+#####Set Attribute: `.attr('attribute','value')`
 
 <br>
 
