@@ -131,7 +131,7 @@ superdiv.append(elegantParagraphs);
 ```   
 
 
-#####Remove all children from element(s) `purge()`
+#####Remove all children nodes from element(s) `purge()`
 ```html
 <!--html-->
 <h1 class="coolGuy">
@@ -160,8 +160,10 @@ el(".coolGuy").purge().text("Hello, Joe.");
 ```
 <br>
 
+**Note:** `purge` is also an easy way to simply remove text from an element.
+
 ####NOTE About Appending
-With `append` or `appendTo`, the element(s) that is/are beeing appended inside of another will be de-referenced. For example:  
+With `append` or `appendTo`, the element(s) that is/are being appended inside of another will be de-referenced. For example:  
 ```html
 <div> </div>
 <div> </div>
