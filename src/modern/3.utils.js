@@ -17,7 +17,7 @@ el.isElementArray = function(_obj){
 el.isElement = function(_obj){
 	var _isElement;
 	try{
-		_isElement = _obj instanceof HTMLElement;
+		_isElement = (_obj instanceof HTMLElement || _obj instanceof Element);
 	}catch(e){
 		_isElement = (_obj && _obj.nodeType) ? true : false ;
 	}
