@@ -31,3 +31,7 @@ el.isCollection = function (_obj){
 el.isNodeList = function (_obj){
 	return _obj instanceof NodeList;
 };
+
+el.isInDom = function(_element){
+	return (document.contains(_element)) ? true : false ;
+}

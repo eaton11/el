@@ -85,6 +85,7 @@ el.elify = function(_obj){
 	//SPECIAL METHODS
 		_ELEMENT.addClass = function(_str){
 			var self = this;
+			
 			function appendClass(_string){
 				if( (' '+self.className+' ').indexOf(' '+_string+' ') === -1 ){
 					if(self.className.length > 0){
@@ -102,6 +103,7 @@ el.elify = function(_obj){
 
 			return self;
 		};
+
 		_ELEMENT.rmClass = function(_str){
 			if( (' '+this.className+' ').indexOf(' '+_str+' ') !== -1 ){
 				if(this.className.indexOf(" ") === -1){
@@ -123,6 +125,7 @@ el.elify = function(_obj){
 			}
 			return this;
 		};
+
 		_ELEMENT.hasClass = function(_str){
 			var classes = this.className.split(" ");
 			for(var i = 0; i < classes.length; i++) {
@@ -132,6 +135,7 @@ el.elify = function(_obj){
 			}
 			return false;
 		};
+
 		_ELEMENT.rm = function(){
 			var self = this;
 			if(self.parentNode) 

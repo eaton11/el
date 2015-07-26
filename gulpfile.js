@@ -19,8 +19,8 @@ function compileJs(_version){
 		.pipe(concat("el.js"))
 		.pipe(wrap( (_version === "legacy") ? legacyFill : modernFill ))
 		.pipe(include())
-		.pipe(gulp.dest("lib/"+_version+"/"));
-		// .pipe(gulp.dest("lib/"+_version+"/")); //would make global directory
+		// .pipe(gulp.dest("lib/"+_version+"/"));
+		.pipe(gulp.dest("lib/"));
 }
 
 function uglifyJs(_version){
@@ -30,7 +30,7 @@ function uglifyJs(_version){
 		.pipe(uglify({preserveComments:"some"}))
 		.pipe(rename("el.min.js"))
 		// .pipe(gulp.dest("lib/"+_version+"/"));
-		.pipe(gulp.dest("lib/"+_version+"/"));
+		.pipe(gulp.dest("lib/"));
 }
 
 gulp.task("compile-js-modern", function(){
@@ -51,6 +51,10 @@ gulp.task("watch", function(){
 	gulp.watch(["src/**", "!src/legacy/classListPolyFill.js"], ["uglify-js-modern","uglify-js-legacy"])
 })
 
+gulp.task("watch-modern", function(){
+	gulp.watch(["src/modern/**"], ["uglify-js-modern"])
+})
+
 gulp.task("default", ["modern", "legacy", "watch"]);
-gulp.task("modern", ["uglify-js-modern"]);
+gulp.task("modern", ["uglify-js-modern", "watch-modern"]);
 gulp.task("legacy", ["uglify-js-legacy"]);
